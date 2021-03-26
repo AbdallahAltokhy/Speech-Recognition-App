@@ -24,7 +24,6 @@ const dictate = () => {
     if (event.results[0].isFinal) {
 
       if (speechToText.includes('what is the time')) {
-        container.appendChild($botMsg);
         speak(getTime);
       }
 

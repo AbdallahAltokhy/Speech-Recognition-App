@@ -60,6 +60,11 @@ const getTheWeather = (speech) => {
       return response.json();
     })
     .then(function (weather) {
+      if (weather.cod === '400') {
+        utterThis = new SpeechSynthesisUtterance(`I cannot find the weather for ${speech.split(' ')[5]}`);
+        synth.speak(utterThis);
+        return;
+      }
       utterThis = new SpeechSynthesisUtterance(`the weather condition in ${weather.name} is mostly full of ${weather.weather[0].description} at a temperature of ${weather.main.temp} degrees Celcius`);
       synth.speak(utterThis);
     });
